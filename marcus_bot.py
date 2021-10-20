@@ -11,7 +11,6 @@
 import transformers
 from transformers import GPT2Config, TFGPT2LMHeadModel, GPT2Tokenizer
 from transformers.file_utils import ModelOutput# loading tokenizer from the saved model path
-from output_marcus_messages import tokenizer
 from transformers import WEIGHTS_NAME, CONFIG_NAME
 import os
 import random

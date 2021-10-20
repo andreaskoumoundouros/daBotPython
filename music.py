@@ -31,9 +31,12 @@ class Music(commands.Cog):
     #     await ctx.send('Now playing: {}'.format(player.title))
 
     @commands.command()
-    async def join(self, ctx, *, channel: discord.VoiceChannel):
+    async def join(self, ctx):#*, channel: discord.VoiceChannel):
         """Joins a voice channel"""
         print(F"{ctx.message}")
+
+        channel: discord.VoiceChannel
+        channel = ctx.message.author.voice.channel
 
         if ctx.voice_client is not None:
             return await ctx.voice_client.move_to(channel)
