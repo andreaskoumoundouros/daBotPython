@@ -40,7 +40,7 @@ marcus = Marcus()
 @bot.event
 async def on_message(message):
 
-    if message.author.id == '141637885718822913' and len(message.content) > 5:
+    if message.author.id == 141637885718822913 and len(message.content) > 5:
         output = message.content
         net_out = marcus.get_output(output)
         await message.channel.send(net_out)
