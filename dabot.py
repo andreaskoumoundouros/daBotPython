@@ -7,6 +7,7 @@ from discord.ext import commands
 
 import discord_token
 from discord_token import MyToken
+from malcs_bot import Malcs
 from music import Music
 
 import marcus_bot
@@ -36,6 +37,7 @@ async def on_ready():
     print('------')
 
 marcus = Marcus()
+malcs = Malcs()
 
 @bot.event
 async def on_message(message):
@@ -46,8 +48,14 @@ async def on_message(message):
         await message.channel.send(net_out)
         print(f'sending: {net_out} in {message.channel}')
 
+    if message.author.id == 150490683269054464 and len(message.content) > 5:
+        output = message.content
+        net_out = malcs.get_output(output)
+        await message.channel.send(net_out)
+        print(f'sending: {net_out} in {message.channel}')
+
     await bot.process_commands(message)
 
 bot.add_cog(Music(bot))
-bot.add_cog(Generator(bot, marcus))
+bot.add_cog(Generator(bot, marcus, malcs))
 bot.run(M_TOKEN)
