@@ -1,3 +1,4 @@
+import random
 import discord
 import os
 import asyncio
@@ -13,6 +14,8 @@ from music import Music
 import marcus_bot
 from marcus_bot import Marcus
 from generator import Generator
+
+from utilities import get_gif_url
 
 M_TOKEN = MyToken.get_token()
 
@@ -51,8 +54,13 @@ async def on_message(message):
     if message.author.id == 150490683269054464 and len(message.content) > 5:
         output = message.content
         net_out = malcs.get_output(output)
-        await message.channel.send(net_out)
-        print(f'sending: {net_out} in {message.channel}')
+
+        chance = random.choice([x for x in range(0, 100)])
+        if chance > 95:
+            await message.channel.send(get_gif_url(net_out))
+        else:
+            await message.channel.send(net_out)
+            print(f'sending: {net_out} in {message.channel}')
 
     await bot.process_commands(message)
 
